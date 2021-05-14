@@ -1,24 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*CSS RESETS*/
+body{
+    background-color: #2F3437;
+    line-height: 1.6;
+}
+h1 {
+    margin-top: 0;
+}
+/*CSS START*/
+.full-table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.card {
+    padding: 10px 25px 10px 25px;
+    border-radius: 10px;
+    background: #2F3437;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 2px 2px 1px 0px #2F3437;
+}
+.card:hover {
+    margin-top: 2px;
+    box-shadow: none;
+}
+.clock {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    /* padding-left: 20px; */
+}
+.time {
+    display: inline-block;
+    min-width: 37px;
+}
+.colon {
+    font-size: 1.1em;
+    display: inline-block;
+}
+.date {
+    display: block;
+    min-width: 162px;
+    /* padding-right: 30px; */
+    /* border-right: 2px solid #295C7B; */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+.greet{
+    
+    min-width: 162px;
+    /* padding-right: 30px; */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
     </style>
 </head>
 <body>
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
-
 <div class="full-table">
   <div class="table-cell">
-
-<div id="timer">
-
-    <div class="days"> 
-        <div id="days" class="numbers "> </div>days</div> 
-      <div class="hours"> 
-        <div  id="hours" class="numbers"> </div>hours</div> 
-      <div class="minutes"> 
-        <div  id="minutes" class="numbers"> </div>minutes</div> 
-      <div   class="seconds"> 
-        <div id="seconds" class="numbers"> </div>seconds</div> 
+    
     <div class="card">
         <div class="greet" id="greet"></div>
       <div class="date" id="date"></div>
@@ -29,46 +83,20 @@
         <div class="colon">:</div>
         <div class="time" id="sec"></div>
       </div>
-
     </div>
-
+    
   </div>
 </div>
-
-</body>
 <script>
-    const year = new Date().getFullYear();
-const myDate = new Date('Jun 30, 2021 23:59:59');
-console.log(myDate);
-
-
-// countdown
-let timer = setInterval(function() {
-
-  // get today's date
-  const today = new Date().getTime();
-
-  // get the difference
-  const diff = myDate - today;
     function date() {
 var today = new Date();
 document.getElementById('date').innerHTML = today.toDateString();
 }
 
-  // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  // display
-  document.getElementById("days").innerHTML=days
-  document.getElementById("hours").innerHTML=hours
-  document.getElementById("minutes").innerHTML=minutes
-  document.getElementById("seconds").innerHTML=seconds
 function clock() {
 var today = new Date();
 var hour = zeros(twelveHour(today.getHours()));
+var hour = zeros(today.getHours());
 var minutes = zeros(today.getMinutes());
 var seconds = zeros(today.getSeconds());
 if(today.getHours() >=12){
@@ -81,7 +109,7 @@ hrs = today.getHours();
 if (hrs < 12)
         greet = 'Good Morning Junior Lieutenant Talyx';
     else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon Ensign Talyx';
+        greet = 'Good Afternoon Junior Lieutenant Talyx';
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Good Evening Junior Lieutenant Talyx';
 // console.log(today.toLocaleTimeString());
@@ -90,7 +118,6 @@ document.getElementById('hour').innerHTML = hour;
 document.getElementById('min').innerHTML = minutes;
 document.getElementById('sec').innerHTML = seconds;
 }
-
 function twelveHour(hour) {
 if (hour > 12) {
     return hour -= 12 
@@ -107,17 +134,13 @@ if (num < 10) {
 };
 return num;
 }
-
 function dateTime() {
 date();
 clock();
 setTimeout(dateTime, 500);
 }
-
-}, 1);
 dateTime()
 // END
 </script>
-
 </body>
 </html>
